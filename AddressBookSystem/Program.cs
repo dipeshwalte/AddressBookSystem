@@ -31,16 +31,16 @@ namespace AddressBookSystem
             person.lastName = Console.ReadLine();
             Console.WriteLine("Enter Address");
             person.address = Console.ReadLine();
-            //Console.WriteLine("Enter City");
-            //person.city = Console.ReadLine();
-            //Console.WriteLine("Enter State");
-            //person.state = Console.ReadLine();
-            //Console.WriteLine("Enter Zip");
-            //person.zip = Console.ReadLine();
-            //Console.WriteLine("Enter phoneNumber");
-            //person.phoneNumber = Console.ReadLine();
-            //Console.WriteLine("Enter Email");
-            //person.email = Console.ReadLine();
+            Console.WriteLine("Enter City");
+            person.city = Console.ReadLine();
+            Console.WriteLine("Enter State");
+            person.state = Console.ReadLine();
+            Console.WriteLine("Enter Zip");
+            person.zip = Console.ReadLine();
+            Console.WriteLine("Enter phoneNumber");
+            person.phoneNumber = Console.ReadLine();
+            Console.WriteLine("Enter Email");
+            person.email = Console.ReadLine();
             addressBook.Add(person);
         }
         public void DisplayNamesInAddresBook() 
