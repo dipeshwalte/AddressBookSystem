@@ -22,34 +22,7 @@ namespace AddressBookSystem
             addressBook = new List<Person>();
         }
 
-        public void AddAddressBookEntry()
-        {
-            Person person = new Person();
-            Console.WriteLine("Enter First name");
-            person.firstName = Console.ReadLine();
-            Console.WriteLine("Enter Last name");
-            person.lastName = Console.ReadLine();
-            Console.WriteLine("Enter Address");
-            person.address = Console.ReadLine();
-            Console.WriteLine("Enter City");
-            person.city = Console.ReadLine();
-            Console.WriteLine("Enter State");
-            person.city = Console.ReadLine();
-            Console.WriteLine("Enter Zip");
-            person.city = Console.ReadLine();
-            Console.WriteLine("Enter phoneNumber");
-            person.city = Console.ReadLine();
-            Console.WriteLine("Enter Email");
-            person.city = Console.ReadLine();
-            addressBook.Add(person);
-        }
-        public void DisplayNamesInAddresBook() 
-        {
-            foreach (Person person in addressBook)
-            {
-                Console.WriteLine(person.firstName);
-            }
-        }
+        
     }
     class Program
     {
@@ -69,10 +42,10 @@ namespace AddressBookSystem
                 switch (choice)
                 {
                     case 1:
-                        addressBook.DisplayNamesInAddresBook();
+                        
                         break;
                     case 2:
-                        addressBook.AddAddressBookEntry();
+                       
                         break;
                     case 3:
                         break;
