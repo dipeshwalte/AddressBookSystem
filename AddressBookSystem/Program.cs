@@ -31,16 +31,16 @@ namespace AddressBookSystem
             person.lastName = Console.ReadLine();
             Console.WriteLine("Enter Address");
             person.address = Console.ReadLine();
-            Console.WriteLine("Enter City");
-            person.city = Console.ReadLine();
-            Console.WriteLine("Enter State");
-            person.state = Console.ReadLine();
-            Console.WriteLine("Enter Zip");
-            person.zip = Console.ReadLine();
-            Console.WriteLine("Enter phoneNumber");
-            person.phoneNumber = Console.ReadLine();
-            Console.WriteLine("Enter Email");
-            person.email = Console.ReadLine();
+            //Console.WriteLine("Enter City");
+            //person.city = Console.ReadLine();
+            //Console.WriteLine("Enter State");
+            //person.state = Console.ReadLine();
+            //Console.WriteLine("Enter Zip");
+            //person.zip = Console.ReadLine();
+            //Console.WriteLine("Enter phoneNumber");
+            //person.phoneNumber = Console.ReadLine();
+            //Console.WriteLine("Enter Email");
+            //person.email = Console.ReadLine();
             addressBook.Add(person);
         }
         public void DisplayNamesInAddresBook() 
@@ -87,6 +87,27 @@ namespace AddressBookSystem
                 Console.WriteLine("Enter Email");
                 addressBook[index].email = Console.ReadLine();
             }
+            else
+                Console.WriteLine("Entry Not found for the name");
+        }
+
+        public void DeleteContact(string firstName, string lastName)
+        {
+            int index = 0;
+            bool found = false;
+            foreach (Person person in addressBook)
+            {
+                if (person.firstName == firstName && person.lastName == lastName)
+                {
+                    found = true;
+                    break;
+                }
+                index++;
+            }
+            if (found)
+                addressBook.Remove(addressBook[index]);
+            else
+                Console.WriteLine("Entry Not found");
         }
     }
     class Program
@@ -102,7 +123,8 @@ namespace AddressBookSystem
                 Console.WriteLine("1) Display All Entries");
                 Console.WriteLine("2) Insert new Entry");
                 Console.WriteLine("3) Edit Entry");
-                Console.WriteLine("4) Exit");
+                Console.WriteLine("4) Delete Entry");
+                Console.WriteLine("5) Exit");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -119,11 +141,20 @@ namespace AddressBookSystem
                         string lastName = Console.ReadLine();
                         addressBook.EditContact(firstName,lastName);
                         break;
+                    case 4:
+                        Console.WriteLine("Enter First Name");
+                        firstName = Console.ReadLine();
+                        Console.WriteLine("Enter Last Name");
+                        lastName = Console.ReadLine();
+                        addressBook.DeleteContact(firstName, lastName);
+                        break;
+                    case 5:
+                        break;
                     default:
                         Console.WriteLine("Enter Proper Choice!");
                         break;
                 }
-            } while (choice!=4);
+            } while (choice!=5);
             
            
         }
