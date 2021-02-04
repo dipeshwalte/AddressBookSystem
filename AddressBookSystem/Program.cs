@@ -34,20 +34,58 @@ namespace AddressBookSystem
             Console.WriteLine("Enter City");
             person.city = Console.ReadLine();
             Console.WriteLine("Enter State");
-            person.city = Console.ReadLine();
+            person.state = Console.ReadLine();
             Console.WriteLine("Enter Zip");
-            person.city = Console.ReadLine();
+            person.zip = Console.ReadLine();
             Console.WriteLine("Enter phoneNumber");
-            person.city = Console.ReadLine();
+            person.phoneNumber = Console.ReadLine();
             Console.WriteLine("Enter Email");
-            person.city = Console.ReadLine();
+            person.email = Console.ReadLine();
             addressBook.Add(person);
         }
         public void DisplayNamesInAddresBook() 
         {
+            if (addressBook.Count==0)
+            {
+                Console.WriteLine("No Names to Display");
+            }
             foreach (Person person in addressBook)
             {
                 Console.WriteLine(person.firstName);
+            }
+        }
+
+        public void EditContact(string firstName,string lastName)
+        {
+            int index = 0;
+            bool found = false;
+            foreach (Person person in addressBook)
+            {
+                if (person.firstName == firstName && person.lastName == lastName)
+                {
+                    found = true;
+                    break;
+                }
+                index++;
+            }
+            if (found)
+            {
+                Console.WriteLine("Enter First name");
+                addressBook[index].firstName = Console.ReadLine();
+                Console.WriteLine("Enter Last name");
+                addressBook[index].lastName = Console.ReadLine();
+                Console.WriteLine("Enter Address");
+                addressBook[index].address = Console.ReadLine();
+                Console.WriteLine("Enter City");
+                addressBook[index].city = Console.ReadLine();
+                Console.WriteLine("Enter State");
+                addressBook[index].state = Console.ReadLine();
+                Console.WriteLine("Enter Zip");
+                addressBook[index].zip = Console.ReadLine();
+                Console.WriteLine("Enter phoneNumber");
+                addressBook[index].phoneNumber = Console.ReadLine();
+                Console.WriteLine("Enter Email");
+                addressBook[index].email = Console.ReadLine();
             }
         }
     }
@@ -63,7 +101,7 @@ namespace AddressBookSystem
                 Console.WriteLine("Enter Choice:");
                 Console.WriteLine("1) Display All Entries");
                 Console.WriteLine("2) Insert new Entry");
-                Console.WriteLine("3) Delete Entry");
+                Console.WriteLine("3) Edit Entry");
                 Console.WriteLine("4) Exit");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
@@ -75,6 +113,11 @@ namespace AddressBookSystem
                         addressBook.AddAddressBookEntry();
                         break;
                     case 3:
+                        Console.WriteLine("Enter First Name");
+                        string firstName = Console.ReadLine();
+                        Console.WriteLine("Enter Last Name");
+                        string lastName = Console.ReadLine();
+                        addressBook.EditContact(firstName,lastName);
                         break;
                     default:
                         Console.WriteLine("Enter Proper Choice!");
