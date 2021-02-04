@@ -62,7 +62,7 @@ namespace AddressBookSystem
             {
                 Console.WriteLine("Enter Choice:");
                 Console.WriteLine("1) Display All Entries");
-                Console.WriteLine("2) Insert Entry");
+                Console.WriteLine("2) Insert new Entry");
                 Console.WriteLine("3) Delete Entry");
                 Console.WriteLine("4) Exit");
                 choice = Convert.ToInt32(Console.ReadLine());
