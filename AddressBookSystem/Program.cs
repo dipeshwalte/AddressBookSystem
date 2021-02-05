@@ -13,6 +13,18 @@ namespace AddressBookSystem
         public string zip;
         public string phoneNumber;
         public string email;
+
+        public void DisplayPerson()
+        {
+            Console.WriteLine($"First Name : {firstName}");
+            Console.WriteLine($"Last Name : {lastName}");
+            Console.WriteLine($"Address : {address}");
+            Console.WriteLine($"City : {city}");
+            Console.WriteLine($"State : {state}");
+            Console.WriteLine($"Zip : {zip}");
+            Console.WriteLine($"PhoneNumber : {phoneNumber}");
+            Console.WriteLine($"Email : {email}");
+        }
     }
     public class AddressBook
     {
@@ -51,7 +63,8 @@ namespace AddressBookSystem
             }
             foreach (Person person in addressBook)
             {
-                Console.WriteLine(person.firstName);
+                Console.WriteLine("-------------------------------------------------");
+                person.DisplayPerson();
             }
         }
 
@@ -119,6 +132,8 @@ namespace AddressBookSystem
             int choice;
             do
             {
+                Console.WriteLine("");
+                Console.WriteLine("------------------------------");
                 Console.WriteLine("Enter Choice:");
                 Console.WriteLine("1) Display All Entries");
                 Console.WriteLine("2) Insert new Entry");
