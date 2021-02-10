@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
-commitMessage="[Dipesh] modify EnsuredNoDuplicates"
-currentBranchName="UC7EnsureNoDuplicates"
-newBranchName="UC8SearchPersonInCity"
+commitMessage="[Dipesh] modify SearchedForPersonInCity"
+currentBranchName="UC8SearchPersonInCity"
+newBranchName="UC9ViewPersonByCity"
 echo --------git status---------
 echo
 git status
