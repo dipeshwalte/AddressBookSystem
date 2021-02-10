@@ -14,7 +14,21 @@ namespace AddressBookSystem
         public string zip;
         public string phoneNumber;
         public string email;
-
+        //Equals method was adapted from :- dotnettutorials.net
+        public override bool Equals(object obj)
+        {
+            // If the passed object is null
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is Person))
+            {
+                return false;
+            }
+            return (this.firstName == ((Person)obj).firstName)
+                && (this.lastName == ((Person)obj).lastName);
+        }
         public void DisplayPerson()
         {
             Console.WriteLine($"First Name : {firstName}");

@@ -14,24 +14,29 @@ namespace AddressBookSystem
 
         public void AddAddressBookEntry()
         {
-            Person person = new Person();
+            Person personEntered = new Person();
             Console.WriteLine("Enter First name");
-            person.firstName = Console.ReadLine();
+            personEntered.firstName = Console.ReadLine();
             Console.WriteLine("Enter Last name");
-            person.lastName = Console.ReadLine();
+            personEntered.lastName = Console.ReadLine();
+            if (addressBook.Find(i => personEntered.Equals(i))!=null)
+            {
+                Console.WriteLine("Person already Exists, enter new person!");
+                return;
+            }
             Console.WriteLine("Enter Address");
-            person.address = Console.ReadLine();
+            personEntered.address = Console.ReadLine();
             Console.WriteLine("Enter City");
-            person.city = Console.ReadLine();
+            personEntered.city = Console.ReadLine();
             Console.WriteLine("Enter State");
-            person.state = Console.ReadLine();
+            personEntered.state = Console.ReadLine();
             Console.WriteLine("Enter Zip");
-            person.zip = Console.ReadLine();
+            personEntered.zip = Console.ReadLine();
             Console.WriteLine("Enter phoneNumber");
-            person.phoneNumber = Console.ReadLine();
+            personEntered.phoneNumber = Console.ReadLine();
             Console.WriteLine("Enter Email");
-            person.email = Console.ReadLine();
-            addressBook.Add(person);
+            personEntered.email = Console.ReadLine();
+            addressBook.Add(personEntered);
         }
         public void DisplayNamesInAddresBook()
         {
