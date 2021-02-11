@@ -48,6 +48,12 @@ namespace AddressBookSystem
             }
 
         }
+
+        public void ViewCountByCityOrState(string city, string state)
+        {
+            Console.WriteLine($"Count of {city} is {cityDictionary[city].Count}");
+            Console.WriteLine($"Count of {state} is {stateDictionary[state].Count}");
+        }
     }
 
 }

@@ -27,8 +27,9 @@ namespace AddressBookSystem
                 Console.WriteLine("6) Switch To Different Address Book");
                 Console.WriteLine("7) Search person in city or state");
                 Console.WriteLine("8) List by state or city");
-                Console.WriteLine("9) Populate Default");
-                Console.WriteLine("10) Exit");
+                Console.WriteLine("9) View Count by state or city");
+                Console.WriteLine("10) Populate Default");
+                Console.WriteLine("11) Exit");
                 Console.WriteLine("------------------------------");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
@@ -83,6 +84,13 @@ namespace AddressBookSystem
                         addressBookCollection.ViewPersonsByCityOrState(cityName,stateName);
                         break;
                     case 9:
+                        Console.WriteLine("Enter City Name");
+                        cityName = Console.ReadLine();
+                        Console.WriteLine("Enter State Name");
+                        stateName = Console.ReadLine();
+                        addressBookCollection.ViewCountByCityOrState(cityName, stateName);
+                        break;
+                    case 10:
                         addressBookCollection.addressBookDictionary.Add("Default", new AddressBook());
                         Person person1 = new Person();
                         person1.firstName = "Dipesh";
@@ -110,7 +118,7 @@ namespace AddressBookSystem
                         Console.WriteLine("Enter Proper Choice!");
                         break;
                 }
-            } while (choice!=10);
+            } while (choice!=11);
         }
     }
 }
