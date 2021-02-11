@@ -6,32 +6,69 @@ namespace AddressBookSystem
 {
     public class AddressBook
     {
-        List<Person> addressBook;
+        public List<Person> addressBook;
         public AddressBook()
         {
             addressBook = new List<Person>();
         }
-
-        public void AddAddressBookEntry()
+        private void AddPersonToDictionary(Dictionary<string, List<Person>> personDictionary,Person person,string placeEntity)
         {
-            Person person = new Person();
+            if (personDictionary.ContainsKey(placeEntity))
+            {
+                personDictionary[placeEntity].Add(person);
+            }
+            else
+            {
+                List<Person> newList = new List<Person>();
+                newList.Add(person);
+                personDictionary.Add(placeEntity, newList);
+            }
+        }
+        private void AddPersonToCityAndState(AddressBookCollection addressBookCollection,Person person)
+        {
+            AddPersonToDictionary(addressBookCollection.cityDictionary, person,person.city);
+            AddPersonToDictionary(addressBookCollection.stateDictionary, person,person.state);
+        }
+        public void AddAddressBookEntry(Person person,AddressBookCollection addressBookCollection)
+        {
+                if (addressBook.Find(i => person.Equals(i)) != null)
+                {
+                    throw new AddressBookException("Person already Exists, enter new person!");
+                    //Console.WriteLine("Person already Exists, enter new person!");
+                    //return;
+                }
+                AddPersonToCityAndState(addressBookCollection, person);
+                addressBook.Add(person);
+                        
+            
+        }
+        public void AddAddressBookEntry(AddressBookCollection addressBookCollection)
+        {
+            Person personEntered = new Person();
             Console.WriteLine("Enter First name");
-            person.firstName = Console.ReadLine();
+            personEntered.firstName = Console.ReadLine();
             Console.WriteLine("Enter Last name");
-            person.lastName = Console.ReadLine();
+            personEntered.lastName = Console.ReadLine();
+            if (addressBook.Find(i => personEntered.Equals(i))!=null)
+            {
+                Console.WriteLine("Person already Exists, enter new person!");
+                return;
+            }
             Console.WriteLine("Enter Address");
-            person.address = Console.ReadLine();
+            personEntered.address = Console.ReadLine();
             Console.WriteLine("Enter City");
-            person.city = Console.ReadLine();
+            personEntered.city = Console.ReadLine();
             Console.WriteLine("Enter State");
-            person.state = Console.ReadLine();
+            personEntered.state = Console.ReadLine();
             Console.WriteLine("Enter Zip");
-            person.zip = Console.ReadLine();
+            personEntered.zip = Console.ReadLine();
             Console.WriteLine("Enter phoneNumber");
-            person.phoneNumber = Console.ReadLine();
+            personEntered.phoneNumber = Console.ReadLine();
             Console.WriteLine("Enter Email");
-            person.email = Console.ReadLine();
-            addressBook.Add(person);
+            personEntered.email = Console.ReadLine();
+            addressBookCollection.cityDictionary[personEntered.city].Add(personEntered);
+            addressBookCollection.stateDictionary[personEntered.state].Add(personEntered);
+            addressBook.Add(personEntered);
         }
         public void DisplayNamesInAddresBook()
         {
