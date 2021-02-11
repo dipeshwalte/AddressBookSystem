@@ -31,8 +31,16 @@ namespace AddressBookSystem
         }
         public void AddAddressBookEntry(Person person,AddressBookCollection addressBookCollection)
         {
-            AddPersonToCityAndState(addressBookCollection, person);
-            addressBook.Add(person);
+                if (addressBook.Find(i => person.Equals(i)) != null)
+                {
+                    throw new AddressBookException("Person already Exists, enter new person!");
+                    //Console.WriteLine("Person already Exists, enter new person!");
+                    //return;
+                }
+                AddPersonToCityAndState(addressBookCollection, person);
+                addressBook.Add(person);
+                        
+            
         }
         public void AddAddressBookEntry(AddressBookCollection addressBookCollection)
         {
