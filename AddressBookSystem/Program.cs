@@ -3,13 +3,10 @@ using System.Collections.Generic;
 
 namespace AddressBookSystem
 {
-   
-   
     class Program
     {
         static void Main(string[] args)
-        {
-            
+        {           
             Console.WriteLine("Welcome to Address Book!");
             Console.WriteLine("Enter Default Address Book Name");
             string addressBookName = Console.ReadLine();
@@ -29,8 +26,9 @@ namespace AddressBookSystem
                 Console.WriteLine("5) Add New Address Book");
                 Console.WriteLine("6) Switch To Different Address Book");
                 Console.WriteLine("7) Search person in city or state");
-                Console.WriteLine("8) Populate Default");
-                Console.WriteLine("9) Exit");
+                Console.WriteLine("8) List by state or city");
+                Console.WriteLine("9) Populate Default");
+                Console.WriteLine("10) Exit");
                 Console.WriteLine("------------------------------");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
@@ -39,7 +37,7 @@ namespace AddressBookSystem
                         addressBookCollection.addressBookDictionary[addressBookName].DisplayNamesInAddresBook();
                         break;
                     case 2:
-                        addressBookCollection.addressBookDictionary[addressBookName].AddAddressBookEntry();
+                        addressBookCollection.addressBookDictionary[addressBookName].AddAddressBookEntry(addressBookCollection);
                         break;
                     case 3:
                         Console.WriteLine("Enter First Name");
@@ -78,6 +76,13 @@ namespace AddressBookSystem
                         addressBookCollection.SearchPersonInCityOrState(firstName, lastName);
                         break;
                     case 8:
+                        Console.WriteLine("Enter City Name");
+                        string cityName = Console.ReadLine();
+                        Console.WriteLine("Enter State Name");
+                        string stateName = Console.ReadLine();
+                        addressBookCollection.ViewPersonsByCityOrState(cityName,stateName);
+                        break;
+                    case 9:
                         addressBookCollection.addressBookDictionary.Add("Default", new AddressBook());
                         Person person1 = new Person();
                         person1.firstName = "Dipesh";
@@ -97,17 +102,15 @@ namespace AddressBookSystem
                         person2.zip = "411033";
                         person2.phoneNumber = "942241411";
                         person2.email = "dhaneshrwalte@gmail.com";
-                        addressBookCollection.addressBookDictionary["Default"].AddAddressBookEntry(person2);
-                        addressBookCollection.addressBookDictionary["Default"].AddAddressBookEntry(person1);
+                        addressBookCollection.addressBookDictionary["Default"].AddAddressBookEntry(person2,addressBookCollection);
+                        addressBookCollection.addressBookDictionary["Default"].AddAddressBookEntry(person1,addressBookCollection);
                         addressBookName = "Default";
                         break;
                     default:
                         Console.WriteLine("Enter Proper Choice!");
                         break;
                 }
-            } while (choice!=9);
-            
-           
+            } while (choice!=10);
         }
     }
 }

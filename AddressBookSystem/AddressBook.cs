@@ -11,12 +11,30 @@ namespace AddressBookSystem
         {
             addressBook = new List<Person>();
         }
-
-        public void AddAddressBookEntry(Person person)
+        private void AddPersonToDictionary(Dictionary<string, List<Person>> personDictionary,Person person,string placeEntity)
         {
+            if (personDictionary.ContainsKey(placeEntity))
+            {
+                personDictionary[placeEntity].Add(person);
+            }
+            else
+            {
+                List<Person> newList = new List<Person>();
+                newList.Add(person);
+                personDictionary.Add(placeEntity, newList);
+            }
+        }
+        private void AddPersonToCityAndState(AddressBookCollection addressBookCollection,Person person)
+        {
+            AddPersonToDictionary(addressBookCollection.cityDictionary, person,person.city);
+            AddPersonToDictionary(addressBookCollection.stateDictionary, person,person.state);
+        }
+        public void AddAddressBookEntry(Person person,AddressBookCollection addressBookCollection)
+        {
+            AddPersonToCityAndState(addressBookCollection, person);
             addressBook.Add(person);
         }
-        public void AddAddressBookEntry()
+        public void AddAddressBookEntry(AddressBookCollection addressBookCollection)
         {
             Person personEntered = new Person();
             Console.WriteLine("Enter First name");
@@ -40,6 +58,8 @@ namespace AddressBookSystem
             personEntered.phoneNumber = Console.ReadLine();
             Console.WriteLine("Enter Email");
             personEntered.email = Console.ReadLine();
+            addressBookCollection.cityDictionary[personEntered.city].Add(personEntered);
+            addressBookCollection.stateDictionary[personEntered.state].Add(personEntered);
             addressBook.Add(personEntered);
         }
         public void DisplayNamesInAddresBook()
