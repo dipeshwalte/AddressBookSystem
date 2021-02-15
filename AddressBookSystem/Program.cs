@@ -5,6 +5,32 @@ namespace AddressBookSystem
 {
     class Program
     {
+        static void SortByCityStateorZip(AddressBookCollection addressBookCollection,string addressBookName)
+        {
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("Enter Choice:");
+            Console.WriteLine("1) Sort By City");
+            Console.WriteLine("2) Sort By State");
+            Console.WriteLine("3) Sort By Zip");
+            Console.WriteLine("------------------------------");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    addressBookCollection.addressBookDictionary[addressBookName].SortByCity();
+                    break;
+                case 2:
+                    addressBookCollection.addressBookDictionary[addressBookName].SortByState();
+                    break;
+                case 3:
+                    addressBookCollection.addressBookDictionary[addressBookName].SortByZip();
+                    break;
+                default:
+                    Console.WriteLine("Enter proper choice");
+                    break;
+            }
+
+        }
         static void Main(string[] args)
         {           
             Console.WriteLine("Welcome to Address Book!");
@@ -29,8 +55,9 @@ namespace AddressBookSystem
                 Console.WriteLine("8) List by state or city");
                 Console.WriteLine("9) View Count by state or city");
                 Console.WriteLine("10) Sort by First Name");
-                Console.WriteLine("11) Populate Default");
-                Console.WriteLine("12) Exit");
+                Console.WriteLine("11) Sort by City,State or Zip");
+                Console.WriteLine("12) Populate Default");
+                Console.WriteLine("13) Exit");
                 Console.WriteLine("------------------------------");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
@@ -95,6 +122,9 @@ namespace AddressBookSystem
                         addressBookCollection.addressBookDictionary[addressBookName].SortByFirstName();
                         break;
                     case 11:
+                        SortByCityStateorZip(addressBookCollection,addressBookName);
+                        break;
+                    case 12:
                         addressBookCollection.addressBookDictionary.Add("Default", new AddressBook());
                         Person person1 = new Person();
                         person1.firstName = "Aipesh";
@@ -122,7 +152,7 @@ namespace AddressBookSystem
                         Console.WriteLine("Enter Proper Choice!");
                         break;
                 }
-            } while (choice!=12);
+            } while (choice!=13);
         }
     }
 }

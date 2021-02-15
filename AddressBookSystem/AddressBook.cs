@@ -87,6 +87,21 @@ namespace AddressBookSystem
         {
             addressBook.Sort((x, y) => x.firstName.CompareTo(y.firstName));
         }
+
+        public void SortByZip()
+        {
+            addressBook.Sort((x, y) => x.zip.CompareTo(y.zip));
+        }
+        public void SortByCity()
+        {
+            addressBook.Sort((x, y) => x.city.CompareTo(y.city));
+        }
+        public void SortByState()
+        {
+            addressBook.Sort((x, y) => x.state.CompareTo(y.state));
+        }
+
+
         public void EditContact(string firstName, string lastName)
         {
             int index = 0;
