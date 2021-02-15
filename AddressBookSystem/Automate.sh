@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 commitMessage="[Dipesh] modify ViewPersonByCityStateLogic"
-currentBranchName="UC9ViewPersonByCity"
-newBranchName="UC10ViewCountByCityState"
+currentBranchName="UC10ViewCountByCityState"
+newBranchName="UC11SortEntries"
 echo --------git status---------
 echo
 git status
