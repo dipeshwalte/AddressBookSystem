@@ -83,6 +83,10 @@ namespace AddressBookSystem
             }
         }
 
+        public void SortByFirstName()
+        {
+            addressBook.Sort((x, y) => x.firstName.CompareTo(y.firstName));
+        }
         public void EditContact(string firstName, string lastName)
         {
             int index = 0;
