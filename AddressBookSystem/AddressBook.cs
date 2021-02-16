@@ -82,12 +82,10 @@ namespace AddressBookSystem
                 person.DisplayPerson();
             }
         }
-
         public void SortByFirstName()
         {
             addressBook.Sort((x, y) => x.firstName.CompareTo(y.firstName));
         }
-
         public void SortByZip()
         {
             addressBook.Sort((x, y) => x.zip.CompareTo(y.zip));
@@ -101,7 +99,7 @@ namespace AddressBookSystem
             addressBook.Sort((x, y) => x.state.CompareTo(y.state));
         }
 
-
+      
         public void EditContact(string firstName, string lastName)
         {
             int index = 0;
