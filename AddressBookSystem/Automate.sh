@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 commitMessage="[Dipesh] modify SaveToTxtFileLogicAdded"
-currentBranchName="UC13SaveToFile"
-newBranchName="UC13SaveToFileCSV"
+currentBranchName="UC14SaveToFileCSV"
+newBranchName="UC15SaveToFileJSON"
 echo --------git status---------
 echo
 git status

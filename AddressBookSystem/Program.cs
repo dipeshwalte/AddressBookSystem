@@ -92,13 +92,13 @@ namespace AddressBookSystem
             switch (choice)
             {
                 case 1:
-                    addressBookCollection.addressBookDictionary[addressBookName].SortByCity();
+                    addressBookCollection.ReadFilesToAddressBookCollectionTXT();
                     break;
                 case 2:
-                    addressBookCollection.addressBookDictionary[addressBookName].SortByState();
+                    addressBookCollection.ReadFilesToAddressBookCollectionCSV();
                     break;
                 case 3:
-                    addressBookCollection.addressBookDictionary[addressBookName].SortByZip();
+                    addressBookCollection.ReadFilesToAddressBookCollectionJSON();
                     break;
                 default:
                     Console.WriteLine("Enter proper choice");
@@ -106,6 +106,34 @@ namespace AddressBookSystem
             }
 
         }
+
+        static void WriteToFile(AddressBookCollection addressBookCollection)
+        {
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("Enter Choice:");
+            Console.WriteLine("1) Write to Txt");
+            Console.WriteLine("2) Write to CSV");
+            Console.WriteLine("3) Write to Json");
+            Console.WriteLine("------------------------------");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    addressBookCollection.WriteAddressBookCollectionToFilesTXT();
+                    break;
+                case 2:
+                    addressBookCollection.WriteAddressBookCollectionToFilesCSV();
+                    break;
+                case 3:
+                    addressBookCollection.WriteAddressBookCollectionToFilesJSON();
+                    break;
+                default:
+                    Console.WriteLine("Enter proper choice");
+                    break;
+            }
+
+        }
+
         static void Main(string[] args)
         {           
             Console.WriteLine("Welcome to Address Book!");
@@ -184,10 +212,10 @@ namespace AddressBookSystem
                         SortByCityStateorZip(addressBookCollection,addressBookName);
                         break;
                     case 12:
-                        addressBookCollection.ReadFilesToAddressBookCollection();
+                        ReadFromFile(addressBookCollection);
                         break;
                     case 13:
-                        addressBookCollection.WriteAddressBookCollectionToFiles();
+                        WriteToFile(addressBookCollection);
                         break;
                     case 14:
                         addressBookName = AddDefaultValues(addressBookCollection);
