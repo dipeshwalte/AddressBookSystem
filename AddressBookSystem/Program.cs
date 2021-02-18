@@ -98,7 +98,7 @@ namespace AddressBookSystem
                     addressBookCollection.ReadFilesToAddressBookCollectionCSV();
                     break;
                 case 3:
-                    
+                    addressBookCollection.ReadFilesToAddressBookCollectionJSON();
                     break;
                 default:
                     Console.WriteLine("Enter proper choice");
@@ -125,7 +125,7 @@ namespace AddressBookSystem
                     addressBookCollection.WriteAddressBookCollectionToFilesCSV();
                     break;
                 case 3:
-
+                    addressBookCollection.WriteAddressBookCollectionToFilesJSON();
                     break;
                 default:
                     Console.WriteLine("Enter proper choice");

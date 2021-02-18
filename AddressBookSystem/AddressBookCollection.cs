@@ -7,6 +7,7 @@ using CsvHelper;
 using System.Globalization;
 using System.Linq;
 using CsvHelper.Configuration;
+using Newtonsoft.Json;
 
 namespace AddressBookSystem
 {
@@ -140,7 +141,26 @@ namespace AddressBookSystem
                 using (var csvExport = new CsvWriter(writer,configuration))
                 {
                     csvExport.WriteRecords(AddressBookItem.Value.addressBook);
-                    
+                   
+                }
+                //writer.Close();
+            }
+        }
+
+        /// <summary>
+        /// Writes the address book collection to files json.
+        /// </summary>
+        public void WriteAddressBookCollectionToFilesJSON()
+        {
+            string folderPath = @"C:\Users\pc\source\repos\AddressBookSystem\AddressBookSystem\jsonFiles\";
+            foreach (var AddressBookItem in addressBookDictionary)
+            {
+                string filePath = folderPath + AddressBookItem.Key + ".json";
+                JsonSerializer serializer = new JsonSerializer();
+                using (StreamWriter writer = new StreamWriter(filePath))
+                using (JsonWriter jsonWriter = new JsonTextWriter(writer))
+                {
+                    serializer.Serialize(writer, AddressBookItem.Value.addressBook);
                 }
                 //writer.Close();
             }
@@ -212,7 +232,25 @@ namespace AddressBookSystem
                 }   
             }
         }
-
+        /// <summary>
+        /// Reads the files to address book collection json.
+        /// </summary>
+        public void ReadFilesToAddressBookCollectionJSON()
+        {
+            string folderPath = @"C:\Users\pc\source\repos\AddressBookSystem\AddressBookSystem\jsonFiles\";
+            DirectoryInfo d = new DirectoryInfo(folderPath);
+            foreach (var file in d.GetFiles("*.json"))
+            {
+                string addressBookName = file.Name.Replace(".json", "");
+                if (!this.addressBookDictionary.ContainsKey(addressBookName))
+                {
+                    this.addressBookDictionary.Add(addressBookName, new AddressBook());
+                    List<Person> people = JsonConvert.DeserializeObject<List<Person>>(File.ReadAllText(folderPath + file.Name));
+                    this.addressBookDictionary[addressBookName].addressBook = people;
+                    Console.WriteLine("Successfully read records from the file " + file.Name);
+                }    
+            }
+        }
 
     }
 
